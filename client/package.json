@@ -1,0 +1,26 @@
+{
+  "name": "english_learning_client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "test": "jest",
+    "typecheck": "tsc --noEmit",
+    "dev": "API_ENDPOINT=http://localhost:5000 next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "9.5.2",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "styled-components": "^5.1.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.10",
+    "@types/react": "^16.9.46",
+    "@types/styled-components": "^5.1.2",
+    "jest": "^26.4.2",
+    "prettier": "^2.0.5",
+    "typescript": "^4.0.2"
+  }
+}
