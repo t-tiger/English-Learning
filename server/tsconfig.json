@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "strict": true,
+    "strictNullChecks": true,
+    "allowJs": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "app/*": ["./app/*"],
+      "config/*": ["./config/*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}
