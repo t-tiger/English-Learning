@@ -1,9 +1,9 @@
 import { Express } from "express";
 import VideoController from "app/controller/videos";
-import YouTubeVideoRepository from "app/repository/youtubeVideo";
+import VideoRepository from "app/repository/video";
 
-const youtubeVideoRepo = new YouTubeVideoRepository();
-const videoController = new VideoController(youtubeVideoRepo);
+const videoRepo = new VideoRepository();
+const videoController = new VideoController(videoRepo);
 
 export const registerRoutes = (app: Express) => {
   app.get("/videos/:id", videoController.show);

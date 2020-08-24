@@ -1,11 +1,11 @@
 import axios from "axios";
-import { YouTubeVideoCaption, YouTubeVideoOutline } from "app/domain/youtube";
+import { VideoCaption, VideoOutline } from "app/domain/video";
 import { APIError } from "app/domain/error";
 
 const getSubtitles = require("youtube-captions-scraper").getSubtitles;
 
-export default class YouTubeVideoRepository {
-  outline = async (videoId: string): Promise<YouTubeVideoOutline> => {
+export default class VideoRepository {
+  outline = async (videoId: string): Promise<VideoOutline> => {
     try {
       const url = `https://www.googleapis.com/youtube/v3/videos?key=${process.env.GOOGLE_API_KEY}&part=snippet&id=${videoId}`;
       const { data } = await axios.get(url);
@@ -32,7 +32,7 @@ export default class YouTubeVideoRepository {
       throw new APIError(e);
     }
   };
-  captions = async (videoId: string): Promise<YouTubeVideoCaption[]> => {
+  captions = async (videoId: string): Promise<VideoCaption[]> => {
     try {
       const captions = await getSubtitles({
         videoID: videoId,
