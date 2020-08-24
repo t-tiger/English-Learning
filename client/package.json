@@ -5,13 +5,14 @@
   "scripts": {
     "test": "jest",
     "typecheck": "tsc --noEmit",
-    "dev": "API_ENDPOINT=http://localhost:5000 next dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "axios": "^0.20.0",
     "next": "9.5.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
