@@ -18,11 +18,14 @@
     "isolatedModules": true,
     "baseUrl": ".",
     "paths": {
-      "pages/*": [
-        "./pages/*"
+      "const/*": [
+        "./const/*"
       ],
       "components/*": [
         "./components/*"
+      ],
+      "pages/*": [
+        "./pages/*"
       ]
     }
   },
