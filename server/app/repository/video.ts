@@ -39,8 +39,8 @@ export default class VideoRepository {
         lang: "en",
       });
       return captions.map(({ start, dur, text }: any) => ({
-        start,
-        duration: dur,
+        start: Number(start),
+        duration: Number(dur),
         text,
       }));
     } catch (e) {
