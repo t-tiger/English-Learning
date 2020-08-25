@@ -36,7 +36,6 @@ const Root = styled.div`
 `
 const Main = styled(Box)`
   flex-grow: 1;
-  padding: 20px 0;
 `
 
 export default DefaultTemplate
