@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
-import { Box, Divider, Typography } from '@material-ui/core'
+import { Box, Divider, Link, Typography } from '@material-ui/core'
 import styled from 'styled-components'
 import YouTube from 'react-youtube'
 import { VideoDetailContext } from 'components/pages/Video/Detail/Context'
 import FixedRatioBox from 'components/atoms/FixedRatioBox'
+import { parseDateTxt } from 'modules/date/helpers'
 
 const Outline: React.FC = () => {
   const {
@@ -25,7 +26,7 @@ const Outline: React.FC = () => {
           {title}
         </Typography>
         <Typography variant="body2" gutterBottom>
-          {publishedAt}
+          {parseDateTxt(publishedAt)} 投稿
         </Typography>
       </Box>
       <Divider />

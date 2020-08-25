@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
 import { AppBar, Toolbar, Typography } from '@material-ui/core'
+import { VERY_DARK_GRAY } from 'const/color'
 
 type Props = {
   title: ReactNode
@@ -8,7 +9,7 @@ type Props = {
 
 const Header: React.FC<Props> = ({ title }: Props) => {
   return (
-    <StyledAppBar position="sticky">
+    <StyledAppBar position="sticky" color="default">
       <Toolbar>
         <Typography variant="h6" noWrap>
           {title}
@@ -20,6 +21,7 @@ const Header: React.FC<Props> = ({ title }: Props) => {
 
 const StyledAppBar = styled(AppBar)`
   overflow-x: auto;
+  background-color: ${VERY_DARK_GRAY};
 `
 
 export default Header
