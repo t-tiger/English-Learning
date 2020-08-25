@@ -23,12 +23,17 @@ type ItemProps = {
 }
 
 const CaptionItem: React.FC<ItemProps> = ({ caption }) => {
+  const { publishSeekEvent, playingTime } = useContext(VideoDetailContext)
+  const isPlaying =
+    caption.start <= playingTime &&
+    caption.start + caption.duration >= playingTime
+
   const handleClick = () => {
-    console.log(caption)
+    publishSeekEvent(caption.start)
   }
 
   return (
-    <ListItem button disableGutters onClick={handleClick}>
+    <ListItem button disableGutters selected={isPlaying} onClick={handleClick}>
       <Box flex={1} mr={1.5}>
         <Typography>{caption.text}</Typography>
       </Box>

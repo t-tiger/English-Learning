@@ -1574,6 +1574,11 @@
   dependencies:
     "@types/yargs-parser" "*"
 
+"@types/youtube-player@^5.5.3":
+  version "5.5.3"
+  resolved "https://registry.yarnpkg.com/@types/youtube-player/-/youtube-player-5.5.3.tgz#84c450c766e19bda507a37e617e288a8ece3450c"
+  integrity sha512-G9k9Q8fyOwzX4A8DI90WB2viYlpxDazoLZDe37GY9+82JL2OOFhEzz6yUIKEt4klACdx/UUuY0BesD68BVR7SA==
+
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.9.0.tgz#bd850604b4042459a5a41cd7d338cbed695ed964"
