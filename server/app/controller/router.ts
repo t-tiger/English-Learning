@@ -7,5 +7,5 @@ const videoRepo = new VideoRepository();
 const videoController = new VideoController(videoRepo);
 
 export const registerRoutes = (app: Express) => {
-  app.get("/videos/:id", cache(100, "application/json"), videoController.show);
+  app.get("/videos/:id", cache(1800, "application/json"), videoController.show);
 };
