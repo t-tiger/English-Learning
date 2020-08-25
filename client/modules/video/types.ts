@@ -18,9 +18,9 @@ export type VideoDetail = {
 }
 
 type VideoThumbnail = {
-  url: 'https://i.ytimg.com/vi/Rd8J-9uUnfc/default.jpg'
-  width: 120
-  height: 90
+  url: string
+  width: number
+  height: number
 }
 
 export type VideoCaption = {

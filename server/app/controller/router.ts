@@ -1,7 +1,7 @@
 import { Express } from "express";
 import VideoController from "app/controller/videos";
 import VideoRepository from "app/repository/video";
-import { cache } from "app/controller/cacheMiddleware";
+import { cache } from "app/controller/middlewares";
 
 const videoRepo = new VideoRepository();
 const videoController = new VideoController(videoRepo);

@@ -1,6 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import * as mcache from "memory-cache";
 
+/**
+ * cache is a middleware which enables caching response with specified duration
+ */
 export const cache = (sec: number, contentType: string) => {
   return (req: Request, res: Response, next: NextFunction) => {
     const key = `__express__${req.originalUrl || req.url}`;
