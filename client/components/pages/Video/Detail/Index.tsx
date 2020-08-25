@@ -1,4 +1,10 @@
-import React, { ReactElement, ReactNode, useEffect, useState } from 'react'
+import React, {
+  ReactElement,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import DefaultTemplate from 'components/templates/DefaultTemplate'
 import { Box, Toolbar, Typography } from '@material-ui/core'
 import { useRouter } from 'next/router'
@@ -44,17 +50,37 @@ const Index: React.FC = () => {
 }
 
 const Content: React.FC = () => {
+  const captionContainerRef = useRef<HTMLDivElement>()
+
   const renderItem = (children: ReactNode): ReactElement => (
     <Item>
       <Toolbar />
-      <ItemContent>{children}</ItemContent>
+      {children}
     </Item>
   )
 
+  const handleScrollTo = (offsetTop: number) => {
+    const elem = captionContainerRef.current
+    if (!elem) {
+      return
+    }
+    const height = elem.clientHeight
+    const scrollTop = Math.max(offsetTop - height / 2, 0)
+    elem.scrollTo({ top: scrollTop, behavior: 'smooth' })
+  }
+
   return (
     <Box>
-      {renderItem(<Outline />)}
-      {renderItem(<Caption />)}
+      {renderItem(
+        <ItemContent>
+          <Outline />
+        </ItemContent>,
+      )}
+      {renderItem(
+        <ItemContent ref={captionContainerRef as any}>
+          <Caption scrollTo={handleScrollTo} />
+        </ItemContent>,
+      )}
     </Box>
   )
 }

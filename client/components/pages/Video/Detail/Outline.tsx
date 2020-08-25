@@ -45,7 +45,6 @@ const Outline: React.FC = () => {
       <FixedRatioBox ratio={{ width: 16, height: 9 }}>
         <YouTube
           containerClassName="youtube-container"
-          id="youtubeVideo"
           videoId={id}
           opts={{ width: '100%', height: '100%' }}
           onReady={handlePlayerReady}
