@@ -22,7 +22,12 @@ const Outline: React.FC = () => {
         />
       </FixedRatioBox>
       <Box my={2.5}>
-        <Typography variant="h4" component="h1" gutterBottom>
+        <Typography
+          variant="h4"
+          component="h1"
+          style={{ fontWeight: 'bold' }}
+          gutterBottom
+        >
           {title}
         </Typography>
         <Typography variant="body2" gutterBottom>

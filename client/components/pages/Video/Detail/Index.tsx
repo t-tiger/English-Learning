@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { ReactElement, ReactNode, useEffect, useState } from 'react'
 import DefaultTemplate from 'components/templates/DefaultTemplate'
-import { Box, Typography } from '@material-ui/core'
+import { Box, Toolbar, Typography } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import { fetchVideoDetail } from 'modules/video/api'
 import { VideoDetail } from 'modules/video/types'
@@ -36,23 +36,47 @@ const Index: React.FC = () => {
         </Box>
       ) : (
         <VideoDetailProvider video={video}>
-          <Container>
-            <Outline />
-            <Caption />
-          </Container>
+          <Content />
         </VideoDetailProvider>
       )}
     </DefaultTemplate>
   )
 }
 
-const Container = styled(Box)`
-  display: flex;
-  
-  > * {
-    flex: 1;
-    padding: 20px;
+const Content: React.FC = () => {
+  const renderItem = (children: ReactNode): ReactElement => (
+    <Item>
+      <Toolbar />
+      <ItemContent>{children}</ItemContent>
+    </Item>
+  )
+
+  return (
+    <Box>
+      {renderItem(<Outline />)}
+      {renderItem(<Caption />)}
+    </Box>
+  )
+}
+
+const Item = styled.div`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+
+  &:first-child {
+    left: 0;
   }
+  &:last-child {
+    right: 0;
+  }
+`
+const ItemContent = styled.div`
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
 `
 
 export default Index
