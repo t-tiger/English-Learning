@@ -5,6 +5,7 @@ export const errorHandler = (err: unknown, _: Request, res: Response, next: Next
   if (res.headersSent) {
     return next(err)
   }
+  console.error(err)
   if (err instanceof APIError) {
     res.status(500);
     res.json({ message: "internal server error" });
