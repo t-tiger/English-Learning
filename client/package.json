@@ -5,7 +5,7 @@
   "scripts": {
     "test": "jest",
     "typecheck": "tsc --noEmit",
-    "dev": "next dev",
+    "dev": "API_ENDPOINT=http://localhost:5000 next dev",
     "build": "next build",
     "start": "next start"
   },

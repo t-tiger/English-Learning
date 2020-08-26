@@ -3,6 +3,7 @@ import { Box, List, ListItem, Typography } from '@material-ui/core'
 import { VideoDetailContext } from 'components/pages/Video/Detail/Context'
 import { VideoCaption } from 'modules/video/types'
 import { formatCaptionTime } from 'modules/video/helpers'
+import { VIDEO_SEEK, VIDEO_STOP } from 'components/pages/Video/Detail/event'
 
 type Props = {
   scrollTo: (offsetTop: number) => void
@@ -44,19 +45,22 @@ type ItemProps = {
 }
 
 const CaptionItem: React.FC<ItemProps> = ({ id, selected, caption }) => {
-  const { publishSeekEvent } = useContext(VideoDetailContext)
+  const { eventEmitter } = useContext(VideoDetailContext)
 
   const handleClick = () => {
-    publishSeekEvent(caption.start)
+    eventEmitter.emit(VIDEO_STOP)
+  }
+  const handleDoubleClick = () => {
+    eventEmitter.emit(VIDEO_SEEK, caption.start)
   }
 
   return (
     <ListItem
       id={id}
-      button
       disableGutters
       selected={selected}
       onClick={handleClick}
+      onDoubleClick={handleDoubleClick}
     >
       <Box flex={1} mr={1.5}>
         <Typography>{caption.text}</Typography>

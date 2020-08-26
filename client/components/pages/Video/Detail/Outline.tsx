@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { Box, Divider, Typography } from '@material-ui/core'
 import styled from 'styled-components'
 import YouTube from 'react-youtube'
@@ -6,6 +12,7 @@ import { VideoDetailContext } from 'components/pages/Video/Detail/Context'
 import FixedRatioBox from 'components/atoms/FixedRatioBox'
 import { parseDateTxt } from 'modules/date/helpers'
 import { YouTubePlayer } from 'youtube-player/dist/types'
+import { VIDEO_SEEK, VIDEO_STOP } from 'components/pages/Video/Detail/event'
 
 const Outline: React.FC = () => {
   const {
@@ -13,15 +20,13 @@ const Outline: React.FC = () => {
       outline: { id, title, description, publishedAt },
     },
     setPlayingTime,
-    registerSeekEvent,
+    eventEmitter,
   } = useContext(VideoDetailContext)
-  const { current: state } = useRef<{ player: YouTubePlayer | null }>({
-    player: null,
-  })
+  const [player, setPlayer] = useState<YouTubePlayer | null>(null)
 
   useEffect(() => {
     const itvId = setInterval(() => {
-      const currentTime = state.player?.getCurrentTime()
+      const currentTime = player?.getCurrentTime()
       if (currentTime) {
         setPlayingTime(currentTime)
       }
@@ -30,14 +35,29 @@ const Outline: React.FC = () => {
     return () => {
       clearInterval(itvId)
     }
-  }, [state])
+  }, [player])
+
+  useEffect(() => {
+    if (!player) {
+      return
+    }
+    const onReceiveSeekEvent = (time: number) => {
+      player.seekTo(time, true)
+      player.playVideo()
+    }
+    const onReceiveStopEvent = () => {
+      player.pauseVideo()
+    }
+    eventEmitter.on(VIDEO_SEEK, onReceiveSeekEvent)
+    eventEmitter.on(VIDEO_STOP, onReceiveStopEvent)
+    return () => {
+      eventEmitter.off(VIDEO_SEEK, onReceiveSeekEvent)
+      eventEmitter.off(VIDEO_STOP, onReceiveStopEvent)
+    }
+  }, [player])
 
   const handlePlayerReady = (event: { target: any }) => {
-    state.player = event.target
-    registerSeekEvent((time: number) => {
-      state.player?.seekTo(time, true)
-      state.player?.playVideo()
-    })
+    setPlayer(event.target)
   }
 
   return (

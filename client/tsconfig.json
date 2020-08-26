@@ -19,7 +19,8 @@
       "const/*": ["./const/*"],
       "components/*": ["./components/*"],
       "modules/*": ["./modules/*"],
-      "pages/*": ["./pages/*"]
+      "pages/*": ["./pages/*"],
+      "utils/*": ["./utils/*"]
     }
   },
   "exclude": ["node_modules"],
