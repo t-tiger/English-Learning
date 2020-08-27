@@ -25,8 +25,8 @@ export const VideoDetailProvider: React.FC<Props> = ({
   const [playingTime, setPlayingTime] = useState(0)
 
   useEffect(() => {
-    setVideo(video)
-  }, [video])
+    setVideo({ ...propVideo })
+  }, [propVideo])
 
   const state: VideoDetailState = {
     eventEmitter,

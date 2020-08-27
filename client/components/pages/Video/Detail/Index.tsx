@@ -14,9 +14,12 @@ import VideoDetailProvider from 'components/pages/Video/Detail/Context'
 import Outline from 'components/pages/Video/Detail/Outline'
 import Caption from 'components/pages/Video/Detail/Caption'
 import styled from 'styled-components'
+import { useMessageCenter } from 'utils/messageCenter'
+import { getErrorMessage } from 'modules/error/helpers'
 
 const Index: React.FC = () => {
   const { id } = useRouter().query
+  const { showMessage } = useMessageCenter()
   const [video, setVideo] = useState<VideoDetail | null>(null)
 
   useEffect(() => {
@@ -26,9 +29,10 @@ const Index: React.FC = () => {
     const fetchVideo = async () => {
       try {
         const data = await fetchVideoDetail(id as string)
+        console.log(data)
         setVideo(data)
       } catch (e) {
-        console.log(e)
+        showMessage('error', getErrorMessage(e))
       }
     }
     fetchVideo()
