@@ -62,7 +62,10 @@ const Outline: React.FC = () => {
 
   return (
     <Container>
-      <FixedRatioBox ratio={{ width: 16, height: 9 }}>
+      <FixedRatioBox
+        ratio={{ width: 16, height: 9 }}
+        style={{ backgroundColor: '#000' }}
+      >
         <YouTube
           containerClassName="youtube-container"
           videoId={id}

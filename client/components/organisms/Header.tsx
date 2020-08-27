@@ -1,16 +1,26 @@
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
+import Router from 'next/router'
+import SearchBar from 'components/molecules/SearchBar'
 import { AppBar, Box, Toolbar, Typography } from '@material-ui/core'
 import { VERY_DARK_GRAY } from 'const/color'
-import SearchBar from 'components/molecules/SearchBar'
+import { extractYoutubeVideoId } from 'modules/video/helpers'
+import { useMessageCenter } from 'utils/messageCenter'
 
 type Props = {
   title: ReactNode
 }
 
 const Header: React.FC<Props> = ({ title }: Props) => {
+  const { showMessage } = useMessageCenter()
+
   const handleFinishSearch = (text: string) => {
-    console.log(text)
+    const videoId = extractYoutubeVideoId(text)
+    if (!videoId) {
+      showMessage('error', 'YouTubeのURLかIDを入力して下さい')
+      return
+    }
+    Router.push('/videos/[id]', `/videos/${videoId}`)
   }
 
   return (

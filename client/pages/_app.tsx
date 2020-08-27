@@ -2,8 +2,9 @@ import React, { ReactElement } from 'react'
 import { AppProps } from 'next/app'
 import { CssBaseline, ThemeProvider } from '@material-ui/core'
 import { mainTheme } from 'const/theme'
+import { MessageCenterProvider } from 'utils/messageCenter'
 
-const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {
+const App = ({ Component, pageProps }: AppProps): ReactElement => {
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side')
@@ -12,10 +13,12 @@ const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {
 
   return (
     <ThemeProvider theme={mainTheme}>
-      <CssBaseline />
-      <Component {...pageProps} />
+      <MessageCenterProvider>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </MessageCenterProvider>
     </ThemeProvider>
   )
 }
 
-export default MyApp
+export default App
