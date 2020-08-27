@@ -15,9 +15,11 @@ export const cache = (sec: number, contentType: string) => {
     }
     const send = res.send;
     res.send = function (body) {
-      mcache.put(key, body, sec * 1000);
+      if (res.statusCode >= 200 && res.statusCode < 300) {
+        mcache.put(key, body, sec * 1000);
+      }
       send.call(this, body);
-      return body;
+      return this;
     };
     next();
   };
