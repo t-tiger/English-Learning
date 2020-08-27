@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useState } from 'react'
 import styled from 'styled-components'
 import Router from 'next/router'
 import SearchBar from 'components/molecules/SearchBar'
@@ -13,14 +13,16 @@ type Props = {
 
 const Header: React.FC<Props> = ({ title }: Props) => {
   const { showMessage } = useMessageCenter()
+  const [searchText, setSearchText] = useState('')
 
-  const handleFinishSearch = (text: string) => {
-    const videoId = extractYoutubeVideoId(text)
+  const handleFinishSearch = () => {
+    const videoId = extractYoutubeVideoId(searchText)
     if (!videoId) {
       showMessage('error', 'YouTubeのURLかIDを入力して下さい')
       return
     }
     Router.push('/videos/[id]', `/videos/${videoId}`)
+    setSearchText('')
   }
 
   return (
@@ -30,7 +32,11 @@ const Header: React.FC<Props> = ({ title }: Props) => {
           {title}
         </Typography>
         <Box ml={2.5}>
-          <SearchBar onEnter={handleFinishSearch} />
+          <SearchBar
+            text={searchText}
+            onChange={setSearchText}
+            onEnter={handleFinishSearch}
+          />
         </Box>
       </Toolbar>
     </StyledAppBar>

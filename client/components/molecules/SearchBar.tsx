@@ -4,21 +4,22 @@ import { Box, fade, InputBase, useTheme } from '@material-ui/core'
 import { Search } from '@material-ui/icons'
 
 type Props = {
-  onEnter: (text: string) => unknown
+  text: string
+  onChange: (text: string) => unknown
+  onEnter: () => unknown
 }
 
-const SearchBar: React.FC<Props> = ({ onEnter }) => {
+const SearchBar: React.FC<Props> = ({ text, onChange, onEnter }) => {
   const theme = useTheme()
-  const [value, setValue] = useState('')
   // value to detect whether in progress of IME conversion
   const [isComposing, setComposing] = useState(false)
 
   const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value)
+    onChange(e.target.value)
   }
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !isComposing) {
-      onEnter(value)
+      onEnter()
     }
   }
   const handleCompositionStart = () => {
@@ -40,7 +41,7 @@ const SearchBar: React.FC<Props> = ({ onEnter }) => {
           input: 'input-input',
         }}
         inputProps={{ 'aria-label': 'search' }}
-        value={value}
+        value={text}
         onChange={handleChangeValue}
         onKeyDown={handleKeyDown}
         onCompositionStart={handleCompositionStart}

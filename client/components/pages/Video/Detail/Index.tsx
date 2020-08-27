@@ -16,10 +16,12 @@ import Caption from 'components/pages/Video/Detail/Caption'
 import styled from 'styled-components'
 import { useMessageCenter } from 'utils/messageCenter'
 import { getErrorMessage } from 'modules/error/helpers'
+import InitialLoading from 'components/molecules/InitialLoading'
 
 const Index: React.FC = () => {
   const { id } = useRouter().query
   const { showMessage } = useMessageCenter()
+  const [loading, setLoading] = useState(false)
   const [video, setVideo] = useState<VideoDetail | null>(null)
 
   useEffect(() => {
@@ -28,22 +30,23 @@ const Index: React.FC = () => {
     }
     const fetchVideo = async () => {
       try {
+        setLoading(true)
         const data = await fetchVideoDetail(id as string)
         console.log(data)
         setVideo(data)
       } catch (e) {
         showMessage('error', getErrorMessage(e))
+      } finally {
+        setLoading(false)
       }
     }
     fetchVideo()
   }, [id])
 
   return (
-    <DefaultTemplate title={video?.outline.title || ''}>
-      {!video ? (
-        <Box>
-          <Typography>loading</Typography>
-        </Box>
+    <DefaultTemplate title={video?.outline.title || 'Video Title'}>
+      {loading || !video ? (
+        <InitialLoading />
       ) : (
         <VideoDetailProvider video={video}>
           <Content />
