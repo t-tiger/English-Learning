@@ -74,7 +74,7 @@ export default class VideoRepository {
     } = snippet;
     return {
       id: videoId,
-      title,
+      title: unescape(title),
       description,
       publishedAt,
       thumbnails,

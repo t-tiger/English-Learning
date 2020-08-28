@@ -1,3 +1,17 @@
+import { VideoOutline, VideoThumbnail } from 'modules/video/types'
+
+export const findVideoThumb = (
+  thumbnails: VideoOutline['thumbnails'],
+  size: keyof VideoOutline['thumbnails'],
+): VideoThumbnail => {
+  const sizes = ['maxres', 'standard', 'high', 'medium', 'default'] as const
+  const minIndex = sizes.indexOf(size)
+
+  const foundSize =
+    sizes.slice(minIndex, sizes.length).find((s) => thumbnails[s]) || 'default'
+  return thumbnails[foundSize] || thumbnails.default
+}
+
 export const formatCaptionTime = (time: number): string => {
   const rounded = Math.round(time)
   const min = Math.floor(rounded / 60)

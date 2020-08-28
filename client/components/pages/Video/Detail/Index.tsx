@@ -28,11 +28,10 @@ const Index: React.FC = () => {
     if (!id) {
       return
     }
-    const fetchVideo = async () => {
+    const fetchData = async () => {
       try {
         setLoading(true)
         const data = await fetchVideoDetail(id as string)
-        console.log(data)
         setVideo(data)
       } catch (e) {
         showMessage('error', getErrorMessage(e))
@@ -40,7 +39,7 @@ const Index: React.FC = () => {
         setLoading(false)
       }
     }
-    fetchVideo()
+    fetchData()
   }, [id])
 
   return (
