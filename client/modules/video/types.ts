@@ -12,7 +12,6 @@ export type VideoDetail = {
       maxres?: VideoThumbnail
     }
     channelTitle: string
-    tags: string[]
   }
   captions: VideoCaption[]
 }

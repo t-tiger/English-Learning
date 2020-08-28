@@ -11,7 +11,6 @@ export type VideoOutline = {
     maxres?: VideoThumbnail;
   };
   channelTitle: string
-  tags: string[]
 };
 
 type VideoThumbnail = {
