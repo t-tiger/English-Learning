@@ -7,7 +7,7 @@
     "typecheck": "tsc --noEmit",
     "dev": "API_ENDPOINT=http://localhost:5000 next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start -p $PORT"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",

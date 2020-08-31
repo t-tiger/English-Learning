@@ -1,7 +1,8 @@
 {
   "private": true,
   "name": "english_learning",
-  "workspaces": {
-    "packages": ["server", "client"]
+  "workspaces": ["server", "client"],
+  "scripts": {
+    "heroku-postbuild": "./heroku.build.sh"
   }
 }
