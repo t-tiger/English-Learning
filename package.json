@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "name": "english_learning",
+  "workspaces": {
+    "packages": ["server", "client"]
+  }
+}

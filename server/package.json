@@ -1,6 +1,7 @@
 {
   "private": true,
-  "name": "english_learning_server",
+  "version": "0.1.0",
+  "name": "server",
   "main": "app.ts",
   "scripts": {
     "ts-node": "ts-node -r tsconfig-paths/register",
