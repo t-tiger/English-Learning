@@ -6,7 +6,7 @@
   "scripts": {
     "ts-node": "ts-node -r tsconfig-paths/register",
     "start": "ALLOWED_ORIGIN=http://localhost:3000 ts-node -r tsconfig-paths/register app.ts",
-    "start:prd": "NODE_ENV=production ALLOWED_ORIGIN=https://english-learning.netlify.app PORT=80 ts-node -r tsconfig-paths/register app.ts"
+    "start:prd": "NODE_ENV=production ts-node -r tsconfig-paths/register app.ts"
   },
   "devDependencies": {
     "@types/cors": "^2.8.7",
