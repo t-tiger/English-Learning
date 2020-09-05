@@ -46,6 +46,7 @@ export default class VideoRepository {
       throw new APIError(e);
     }
   };
+
   captions = async (videoId: string): Promise<VideoCaption[]> => {
     try {
       const captions = await getSubtitles({
@@ -61,6 +62,7 @@ export default class VideoRepository {
       throw new APIError(e);
     }
   };
+
   private buildVideoOutline = (
     videoId: string,
     snippet: Snippet

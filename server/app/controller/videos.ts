@@ -28,8 +28,10 @@ export default class VideoController {
   show = async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
     try {
-      const outline = await this.videoRepo.outline(id);
-      const captions = await this.videoRepo.captions(id);
+      const [outline, captions] = await Promise.all([
+        this.videoRepo.outline(id),
+        this.videoRepo.captions(id),
+      ]);
       res.json({ outline, captions });
     } catch (e) {
       next(e);

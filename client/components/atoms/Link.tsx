@@ -39,7 +39,7 @@ const NextComposed = React.forwardRef<HTMLAnchorElement, NextComposedProps>(
   },
 )
 
-export type LinkProps = {
+type LinkProps = {
   innerRef?: React.Ref<HTMLAnchorElement>
   naked?: boolean
 } & NextComposedProps &
