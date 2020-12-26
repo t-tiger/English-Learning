@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+
 import { Box, fade, InputBase, useTheme } from '@material-ui/core'
 import { Search } from '@material-ui/icons'
 

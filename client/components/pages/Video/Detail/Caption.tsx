@@ -1,5 +1,8 @@
 import React, { useContext, useEffect } from 'react'
+import styled from 'styled-components'
+
 import { Box, List, ListItem, Typography } from '@material-ui/core'
+
 import { VideoDetailContext } from 'components/pages/Video/Detail/Context'
 import { VideoCaption } from 'modules/video/types'
 import { formatCaptionTime } from 'modules/video/helpers'
@@ -65,12 +68,16 @@ const CaptionItem: React.FC<ItemProps> = ({ id, selected, caption }) => {
       <Box flex={1} mr={1.5}>
         <Typography>{caption.text}</Typography>
       </Box>
-      <Typography variant="body2">
+      <TimeTypography variant="body2">
         {formatCaptionTime(caption.start)}
-      </Typography>
+      </TimeTypography>
     </ListItem>
   )
 }
+
+const TimeTypography = styled(Typography)`
+  user-select: none;
+`
 
 const getCurrentIndex = (
   playingTime: number,

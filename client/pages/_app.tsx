@@ -1,6 +1,8 @@
 import React, { ReactElement } from 'react'
+
 import { AppProps } from 'next/app'
 import { CssBaseline, ThemeProvider } from '@material-ui/core'
+
 import { mainTheme } from 'const/theme'
 import { MessageCenterProvider } from 'utils/messageCenter'
 

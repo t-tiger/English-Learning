@@ -1,18 +1,16 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
-import { Box, Divider, Typography } from '@material-ui/core'
+import React, { useContext, useEffect, useState, } from 'react'
 import styled from 'styled-components'
-import YouTube from 'react-youtube'
-import { VideoDetailContext } from 'components/pages/Video/Detail/Context'
-import FixedRatioBox from 'components/atoms/FixedRatioBox'
-import { parseDateTxt } from 'modules/date/helpers'
+
+import { Box, Divider, Typography } from '@material-ui/core'
 import { YouTubePlayer } from 'youtube-player/dist/types'
+
+import { VideoDetailContext } from 'components/pages/Video/Detail/Context'
+import { parseDateTxt } from 'modules/date/helpers'
 import { VIDEO_SEEK, VIDEO_STOP } from 'components/pages/Video/Detail/event'
+
+import YouTube from 'react-youtube'
+import FixedRatioBox from 'components/atoms/FixedRatioBox'
+
 
 const Outline: React.FC = () => {
   const {

@@ -1,5 +1,7 @@
 import React, { ReactNode, useEffect, useState } from 'react'
+
 import { VideoDetail } from 'modules/video/types'
+
 import EventEmitter from 'utils/eventEmitter'
 
 export type VideoDetailState = {

@@ -1,7 +1,9 @@
 import React, { ReactElement, ReactNode } from 'react'
-import Head from 'next/head'
-import { Box } from '@material-ui/core'
 import styled from 'styled-components'
+import Head from 'next/head'
+
+import { Box } from '@material-ui/core'
+
 import Header from 'components/organisms/Header'
 
 type Props = {

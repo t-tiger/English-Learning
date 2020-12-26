@@ -1,10 +1,13 @@
 import React from 'react'
-import { VideoOutline } from 'modules/video/types'
-import { Box, Grid, Typography } from '@material-ui/core'
-import { findVideoThumb } from 'modules/video/helpers'
-import FixedRatioBox from 'components/atoms/FixedRatioBox'
 import Link from 'components/atoms/Link'
 import styled from 'styled-components'
+
+import { Box, Grid, Typography } from '@material-ui/core'
+
+import { VideoOutline } from 'modules/video/types'
+import { findVideoThumb } from 'modules/video/helpers'
+
+import FixedRatioBox from 'components/atoms/FixedRatioBox'
 
 type Props = {
   items: VideoOutline[]

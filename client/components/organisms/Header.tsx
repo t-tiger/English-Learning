@@ -1,11 +1,14 @@
 import React, { ReactNode, useState } from 'react'
 import styled from 'styled-components'
 import Router from 'next/router'
-import SearchBar from 'components/molecules/SearchBar'
+
 import { AppBar, Box, Toolbar, Typography } from '@material-ui/core'
+
 import { VERY_DARK_GRAY } from 'const/color'
 import { extractYoutubeVideoId } from 'modules/video/helpers'
 import { useMessageCenter } from 'utils/messageCenter'
+
+import SearchBar from 'components/molecules/SearchBar'
 
 type Props = {
   title: ReactNode

@@ -1,21 +1,17 @@
-import React, {
-  ReactElement,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
-import DefaultTemplate from 'components/templates/DefaultTemplate'
-import { Box, Toolbar, Typography } from '@material-ui/core'
+import React, { ReactElement, ReactNode, useEffect, useRef, useState, } from 'react'
+import styled from 'styled-components'
+
+import { Box, Toolbar } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import { fetchVideoDetail } from 'modules/video/api'
 import { VideoDetail } from 'modules/video/types'
+import { useMessageCenter } from 'utils/messageCenter'
+import { getErrorMessage } from 'modules/error/helpers'
+
 import VideoDetailProvider from 'components/pages/Video/Detail/Context'
 import Outline from 'components/pages/Video/Detail/Outline'
 import Caption from 'components/pages/Video/Detail/Caption'
-import styled from 'styled-components'
-import { useMessageCenter } from 'utils/messageCenter'
-import { getErrorMessage } from 'modules/error/helpers'
+import DefaultTemplate from 'components/templates/DefaultTemplate'
 import InitialLoading from 'components/molecules/InitialLoading'
 
 const Index: React.FC = () => {
