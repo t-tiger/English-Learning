@@ -1,7 +1,8 @@
 import axios from "axios";
+const getSubtitles = require("youtube-captions-scraper").getSubtitles;
+
 import { VideoCaption, VideoOutline } from "app/domain/video";
 import { APIError } from "app/domain/error";
-const getSubtitles = require("youtube-captions-scraper").getSubtitles;
 
 type Snippet = {
   title: string;
@@ -36,7 +37,7 @@ export default class VideoRepository {
     );
   };
 
-  outline = async (videoId: string): Promise<VideoOutline> => {
+  findOutline = async (videoId: string): Promise<VideoOutline> => {
     try {
       const url = `https://www.googleapis.com/youtube/v3/videos?key=${process.env.GOOGLE_API_KEY}&part=snippet&id=${videoId}`;
       const { data } = await axios.get(url);
@@ -47,7 +48,7 @@ export default class VideoRepository {
     }
   };
 
-  captions = async (videoId: string): Promise<VideoCaption[]> => {
+  findCaptions = async (videoId: string): Promise<VideoCaption[]> => {
     try {
       const captions = await getSubtitles({
         videoID: videoId,

@@ -11,8 +11,8 @@ export default class FindVideoDetailUsecase {
 
   async execute(videoId: string): Promise<Result> {
     const [outline, captions] = await Promise.all([
-      this.videoRepo.outline(videoId),
-      this.videoRepo.captions(videoId),
+      this.videoRepo.findOutline(videoId),
+      this.videoRepo.findCaptions(videoId),
     ]);
     return { outline, captions };
   }

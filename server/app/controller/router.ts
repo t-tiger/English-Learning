@@ -1,7 +1,8 @@
 import { Express } from "express";
+import { cache } from "app/controller/middlewares";
+
 import VideoController from "app/controller/videos";
 import VideoRepository from "app/repository/video";
-import { cache } from "app/controller/middlewares";
 import FindVideoListUsecase from "app/usecase/findVideoList";
 import FindVideoDetailUsecase from "app/usecase/findVideoDetail";
 

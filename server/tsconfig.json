@@ -9,8 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "app/*": ["./app/*"],
-      "config/*": ["./config/*"]
+      "app/*": ["./app/*"]
     }
   },
   "exclude": ["node_modules"]
