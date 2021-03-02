@@ -1,5 +1,6 @@
 import { VideoOutline, VideoThumbnail } from 'modules/video/types'
 
+/** find thumbnail with appropriate size. size of returned thumbnail will be close to specified size as possible. */
 export const findVideoThumb = (
   thumbnails: VideoOutline['thumbnails'],
   size: keyof VideoOutline['thumbnails'],
@@ -12,13 +13,15 @@ export const findVideoThumb = (
   return thumbnails[foundSize] || thumbnails.default
 }
 
-export const formatCaptionTime = (time: number): string => {
-  const rounded = Math.round(time)
+/** converts numSec to text with caption format. caption format is [min]:[sec]. */
+export const formatCaptionTime = (numSec: number): string => {
+  const rounded = Math.round(numSec)
   const min = Math.floor(rounded / 60)
   const sec = Math.floor(rounded % 60)
   return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`
 }
 
+/** extract youtubeId from text like URL */
 export const extractYoutubeVideoId = (text: string): string | null => {
   const fullRegex = /^[^#&?]{11}$/
   const fullMatch = text.match(fullRegex)
