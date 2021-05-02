@@ -48,7 +48,9 @@ type ItemProps = {
 }
 
 const CaptionItem: React.FC<ItemProps> = ({ id, selected, caption }) => {
-  const { eventEmitter } = useContext(VideoDetailContext)
+  const { eventEmitter, captionSelectionDisabled } = useContext(
+    VideoDetailContext,
+  )
 
   const handleClick = () => {
     eventEmitter.emit(VIDEO_STOP)
@@ -66,16 +68,20 @@ const CaptionItem: React.FC<ItemProps> = ({ id, selected, caption }) => {
       onDoubleClick={handleDoubleClick}
     >
       <Box flex={1} mr={1.5}>
-        <Typography>{caption.text}</Typography>
+        {captionSelectionDisabled ? (
+          <SelectDisabledTypography>{caption.text}</SelectDisabledTypography>
+        ) : (
+          <Typography>{caption.text}</Typography>
+        )}
       </Box>
-      <TimeTypography variant="body2">
+      <SelectDisabledTypography variant="body2">
         {formatCaptionTime(caption.start)}
-      </TimeTypography>
+      </SelectDisabledTypography>
     </ListItem>
   )
 }
 
-const TimeTypography = styled(Typography)`
+const SelectDisabledTypography = styled(Typography)`
   user-select: none;
 `
 

@@ -1,7 +1,13 @@
-import React, { useContext, useEffect, useState, } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 
-import { Box, Divider, Typography } from '@material-ui/core'
+import {
+  Box,
+  Checkbox,
+  Divider,
+  FormControlLabel,
+  Typography,
+} from '@material-ui/core'
 import { YouTubePlayer } from 'youtube-player/dist/types'
 
 import { VideoDetailContext } from 'components/pages/Video/Detail/Context'
@@ -11,15 +17,17 @@ import { VIDEO_SEEK, VIDEO_STOP } from 'components/pages/Video/Detail/event'
 import YouTube from 'react-youtube'
 import FixedRatioBox from 'components/atoms/FixedRatioBox'
 
-
 const Outline: React.FC = () => {
   const {
     video: {
       outline: { id, title, description, publishedAt },
     },
     setPlayingTime,
+    captionSelectionDisabled,
+    setCaptionSelectionDisabled,
     eventEmitter,
   } = useContext(VideoDetailContext)
+  const [videoVisibility, setVideoVisibility] = useState(true)
   const [player, setPlayer] = useState<YouTubePlayer | null>(null)
 
   useEffect(() => {
@@ -54,6 +62,16 @@ const Outline: React.FC = () => {
     }
   }, [player])
 
+  const handleChangeVideoVisibility = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setVideoVisibility(e.target.checked)
+  }
+  const handleChangeCaptionSelection = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setCaptionSelectionDisabled(e.target.checked)
+  }
   const handlePlayerReady = (event: { target: any }) => {
     setPlayer(event.target)
   }
@@ -61,7 +79,7 @@ const Outline: React.FC = () => {
   return (
     <Container>
       <FixedRatioBox
-        ratio={{ width: 16, height: 9 }}
+        ratio={{ width: 16, height: videoVisibility ? 9 : 0 }}
         style={{ backgroundColor: '#000' }}
       >
         <YouTube
@@ -83,6 +101,26 @@ const Outline: React.FC = () => {
         <Typography variant="body2" gutterBottom>
           {parseDateTxt(publishedAt)} 投稿
         </Typography>
+        <Box display="flex">
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={videoVisibility}
+                onChange={handleChangeVideoVisibility}
+              />
+            }
+            label="Display video"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={captionSelectionDisabled}
+                onChange={handleChangeCaptionSelection}
+              />
+            }
+            label="Caption selection disabled"
+          />
+        </Box>
       </Box>
       <Divider />
       <Box my={2}>

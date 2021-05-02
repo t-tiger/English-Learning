@@ -9,6 +9,8 @@ export type VideoDetailState = {
   video: VideoDetail
   playingTime: number
   setPlayingTime: (value: number) => void
+  captionSelectionDisabled: boolean
+  setCaptionSelectionDisabled: (val: boolean) => void
 }
 
 export const VideoDetailContext = React.createContext<VideoDetailState>(null!)
@@ -25,6 +27,7 @@ export const VideoDetailProvider: React.FC<Props> = ({
   const [eventEmitter] = useState(new EventEmitter())
   const [video, setVideo] = useState({ ...propVideo })
   const [playingTime, setPlayingTime] = useState(0)
+  const [captionSelectionDisabled, setCaptionSelectionDisabled] = useState(false)
 
   useEffect(() => {
     setVideo({ ...propVideo })
@@ -35,6 +38,8 @@ export const VideoDetailProvider: React.FC<Props> = ({
     video,
     playingTime,
     setPlayingTime,
+    captionSelectionDisabled,
+    setCaptionSelectionDisabled,
   }
   return (
     <VideoDetailContext.Provider value={state}>
