@@ -1,5 +1,5 @@
 import axios from "axios";
-const getSubtitles = require("youtube-captions-scraper").getSubtitles;
+import { parse } from "fast-xml-parser";
 
 import { VideoCaption, VideoOutline } from "app/domain/video";
 import { APIError } from "app/domain/error";
@@ -16,6 +16,12 @@ type Snippet = {
     maxres?: Thumbnail;
   };
   channelTitle: string;
+};
+
+type Caption = {
+  "#text": string;
+  "@_start": string;
+  "@_dur": string;
 };
 
 type Thumbnail = {
@@ -50,14 +56,14 @@ export default class VideoRepository {
 
   findCaptions = async (videoId: string): Promise<VideoCaption[]> => {
     try {
-      const captions = await getSubtitles({
-        videoID: videoId,
-        lang: "en",
-      });
-      return captions.map(({ start, dur, text }: any) => ({
-        start: Number(start),
-        duration: Number(dur),
-        text,
+      const { data } = await axios.get(
+        `https://video.google.com/timedtext?lang=en&v=${videoId}`
+      );
+      const parsed = parse(data, { ignoreAttributes: false });
+      return parsed.transcript.text.map((d: Caption) => ({
+        start: Number(d["@_start"]),
+        duration: Number(d["@_dur"]),
+        text: d["#text"],
       }));
     } catch (e) {
       throw new APIError(e);
